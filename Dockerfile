@@ -19,7 +19,10 @@ RUN set -x \
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
-# Install the dependencies
+# Instalar o Git no Docker
+RUN apt-get update && apt-get install -y git
+
+# Instalar as dependências de produção
 RUN npm ci --only=production --ignore-scripts
 
 # Copy the rest of the source code to the working directory
