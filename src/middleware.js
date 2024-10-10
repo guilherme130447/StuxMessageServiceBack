@@ -8,7 +8,7 @@ const cors = require('cors');
 // Permitir todas as origens
 app.use(cors());
 
-const apikey = async (req, res, next) => {
+async function apikey(req, res, next) {
   /*
     #swagger.security = [{
           "apiKeyAuth": []
@@ -24,12 +24,12 @@ const apikey = async (req, res, next) => {
       }
   */
   if (globalApiKey) {
-    const apiKey = req.headers['x-api-key']
+    const apiKey = req.headers['x-api-key'];
     if (!apiKey || apiKey !== globalApiKey) {
-      return sendErrorResponse(res, 403, 'Invalid API key')
+      return sendErrorResponse(res, 403, 'Invalid API key');
     }
   }
-  next()
+  next();
 }
 
 const sessionNameValidation = async (req, res, next) => {
