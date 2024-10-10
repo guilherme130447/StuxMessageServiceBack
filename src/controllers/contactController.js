@@ -13,6 +13,7 @@ const { sendErrorResponse } = require('../utils')
  * @throws {Error} If there is an error retrieving the contact information.
  * @returns {Object} The contact information object.
  */
+
 const getClassInfo = async (req, res) => {
   try {
     const { contactId } = req.body
