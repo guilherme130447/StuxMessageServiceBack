@@ -4,20 +4,16 @@ const { validateSession } = require('./sessions');
 const rateLimiting = require('express-rate-limit');
 const cors = require('cors');
 
-// Middleware CORS
+// Configurações do CORS
 const corsOptions = {
   origin: 'http://localhost:3000', // ou a URL do front-end em produção
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'x-api-key'],
-  optionsSuccessStatus: 200,
+  optionsSuccessStatus: 200, // Para navegadores antigos
 };
 
-// Exporta o middleware para uso no `app.js`
+// Middleware CORS
 const applyCors = cors(corsOptions);
-
-module.exports = {
-  applyCors, // Para ser usado no app.js
-};
 
 const apikey = async (req, res, next) => {
   /*
@@ -191,6 +187,7 @@ const groupChatSwagger = async (req, res, next) => {
 };
 
 module.exports = {
+  applyCors,
   sessionValidation,
   apikey,
   sessionNameValidation,

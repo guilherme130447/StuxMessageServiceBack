@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { applyCors } = require('./middleware'); // Importa o middleware de CORS
+const { applyCors, apikey } = require('./middleware'); // Importa os middlewares
 const { maxAttachmentSize } = require('./config');
 const { restoreSessions } = require('./sessions');
 const { routes } = require('./routes');
@@ -9,6 +9,9 @@ const app = express();
 
 // Aplica o middleware de CORS
 app.use(applyCors);
+
+// Aplica a validação da API key
+app.use(apikey);
 
 // Configurações do Body Parser
 app.disable('x-powered-by');
