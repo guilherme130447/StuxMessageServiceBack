@@ -10,12 +10,9 @@ const app = express();
 // Middleware para lidar com CORS
 app.use(cors({
   origin: '*', // Permite todas as origens, você pode restringir a origens específicas aqui
-  methods: ['GET', 'POST','OPTIONS'], // Define os métodos permitidos para requisições CORS
+  methods: ['GET', 'POST'], // Define os métodos permitidos para requisições CORS
   allowedHeaders: ['x-api-key'], // Define quais headers são permitidos
 }));
-
-// Opcional: Lidar manualmente com requisições OPTIONS
-app.options('*', cors()); // Lida com todas as requisições OPTIONS globalmente
 
 async function apikey(req, res, next) {
   /*
