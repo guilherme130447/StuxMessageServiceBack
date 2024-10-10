@@ -28,4 +28,4 @@ app.use('/', routes);
 // Restaurando sessões
 restoreSessions();
 
-module.exports =
+module.exports = app;
