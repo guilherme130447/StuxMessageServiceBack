@@ -1,21 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
+const { applyCors } = require('./middleware'); // Importa o middleware de CORS
 const { maxAttachmentSize } = require('./config');
 const { restoreSessions } = require('./sessions');
 const { routes } = require('./routes');
 
 const app = express();
 
-// Middleware CORS
-const corsOptions = {
-  origin: 'http://localhost:3000', // ou a URL do front-end em produção
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'x-api-key'],
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions)); // Aplica o middleware de CORS
+// Aplica o middleware de CORS
+app.use(applyCors);
 
 // Configurações do Body Parser
 app.disable('x-powered-by');
