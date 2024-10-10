@@ -4,17 +4,20 @@ const { validateSession } = require('./sessions');
 const rateLimiting = require('express-rate-limit');
 const cors = require('cors');
 
-// Configurações CORS
+// Middleware CORS
 const corsOptions = {
-  origin: 'http://localhost:3000', // Permitir requisições desta origem (pode ajustar para sua URL de front-end em produção)
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
-  allowedHeaders: ['Content-Type', 'x-api-key'], // Cabeçalhos permitidos
-  optionsSuccessStatus: 200, // Resposta para as requisições `OPTIONS`
-  preflightContinue: false, // Se `false`, o middleware CORS responde diretamente a preflight requests
+  origin: 'http://localhost:3000', // ou a URL do front-end em produção
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'x-api-key'],
+  optionsSuccessStatus: 200,
 };
 
-// Habilitar o middleware CORS globalmente
-app.use(cors(corsOptions));
+// Exporta o middleware para uso no `app.js`
+const applyCors = cors(corsOptions);
+
+module.exports = {
+  applyCors, // Para ser usado no app.js
+};
 
 const apikey = async (req, res, next) => {
   /*
