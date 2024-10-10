@@ -3,16 +3,16 @@ const { sendErrorResponse } = require('./utils')
 const { validateSession } = require('./sessions')
 const rateLimiting = require('express-rate-limit')
 
-const express = require('express');
-const cors = require('cors');
-const app = express();
+// const express = require('express');
+// const cors = require('cors');
+// const app = express();
 
-// Middleware para lidar com CORS
-app.use(cors({
-  origin: '*', // Permite todas as origens, você pode restringir a origens específicas aqui
-  methods: ['GET', 'POST'], // Define os métodos permitidos para requisições CORS
-  allowedHeaders: ['x-api-key'], // Define quais headers são permitidos
-}));
+// // Middleware para lidar com CORS
+// app.use(cors({
+//   origin: '*', // Permite todas as origens, você pode restringir a origens específicas aqui
+//   methods: ['GET', 'POST'], // Define os métodos permitidos para requisições CORS
+//   allowedHeaders: ['x-api-key'], // Define quais headers são permitidos
+// }));
 
 async function apikey(req, res, next) {
   /*
@@ -30,7 +30,7 @@ async function apikey(req, res, next) {
       }
   */
   if (globalApiKey) {
-    const apiKey = req.headers['x-api-key'];
+    const apiKey = req.body['x-api-key'];
     if (!apiKey || apiKey !== globalApiKey) {
       return sendErrorResponse(res, 403, 'Invalid API key');
     }
