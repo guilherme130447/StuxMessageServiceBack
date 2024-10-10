@@ -17,10 +17,6 @@ app.use(cors({
 // Opcional: Lidar manualmente com requisições OPTIONS
 app.options('*', cors()); // Lida com todas as requisições OPTIONS globalmente
 
-app.listen(3000, () => {
-  console.log('Servidor rodando na porta 3000');
-});
-
 async function apikey(req, res, next) {
   /*
     #swagger.security = [{
