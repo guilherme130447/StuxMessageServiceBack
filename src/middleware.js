@@ -10,8 +10,8 @@ const app = express();
 // Middleware para lidar com CORS
 app.use(cors({
   origin: '*', // Permite todas as origens, você pode restringir a origens específicas aqui
-  methods: ['GET', 'POST'], // Define os métodos permitidos para requisições CORS
-  allowedHeaders: ['Content-Type', 'x-api-key'], // Define quais headers são permitidos
+  methods: ['GET', 'POST','OPTIONS'], // Define os métodos permitidos para requisições CORS
+  allowedHeaders: ['x-api-key'], // Define quais headers são permitidos
 }));
 
 // Opcional: Lidar manualmente com requisições OPTIONS
