@@ -3,6 +3,24 @@ const { sendErrorResponse } = require('./utils')
 const { validateSession } = require('./sessions')
 const rateLimiting = require('express-rate-limit')
 
+const express = require('express');
+const cors = require('cors');
+const app = express();
+
+// Middleware para lidar com CORS
+app.use(cors({
+  origin: '*', // Permite todas as origens, você pode restringir a origens específicas aqui
+  methods: ['GET', 'POST'], // Define os métodos permitidos para requisições CORS
+  allowedHeaders: ['Content-Type', 'x-api-key'], // Define quais headers são permitidos
+}));
+
+// Opcional: Lidar manualmente com requisições OPTIONS
+app.options('*', cors()); // Lida com todas as requisições OPTIONS globalmente
+
+app.listen(3000, () => {
+  console.log('Servidor rodando na porta 3000');
+});
+
 async function apikey(req, res, next) {
   /*
     #swagger.security = [{
