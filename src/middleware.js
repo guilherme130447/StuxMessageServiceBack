@@ -3,11 +3,6 @@ const { sendErrorResponse } = require('./utils')
 const { validateSession } = require('./sessions')
 const rateLimiting = require('express-rate-limit')
 
-const cors = require('cors');
-
-// Permitir todas as origens
-app.use(cors());
-
 async function apikey(req, res, next) {
   /*
     #swagger.security = [{
